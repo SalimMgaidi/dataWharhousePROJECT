@@ -1,0 +1,2231 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/26/2025 11:47:11 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-U34VBKC"
+  DTS:CreatorName="DESKTOP-U34VBKC\Lenovo"
+  DTS:DTSID="{B70BDB29-A924-4177-91EC-BA408F0C4CDC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1008.3"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{481CB7C0-525B-48FA-9C27-401A61E845EE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7D68FC91-CDDA-4A2D-B3BF-2850087C2D99}"
+      DTS:ObjectName="DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-U34VBKC\SQLEXPRESS;Initial Catalog=STG_stat_Tn;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{7D68FC91-CDDA-4A2D-B3BF-2850087C2D99}DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{20CCA76B-9F36-4DA6-9445-C26E0677E04C}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Lenovo\Desktop\edu\Répartition de la population agée de 10 ans et plus selon le niveau d'instruction 11_26_2025 09_41_58.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sc_file]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5E0259FC-738E-4FE6-AC39-9B85BB92BBA2}"
+      DTS:ObjectName="sc_file">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Lenovo\Desktop\edu\Scolarisation de la population agés de 6 à 14 ans 11_26_2025 09_39_39.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{81A1B5CB-FAE0-4B66-B563-02D75518C431}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7D68FC91-CDDA-4A2D-B3BF-2850087C2D99}"
+          SQLTask:SqlStatementSource="DELETE FROM Scolorisation" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72c26b9e-cfb8-42bd-9f3d-39af3d040e05}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7D68FC91-CDDA-4A2D-B3BF-2850087C2D99}"
+          SQLTask:SqlStatementSource="DELETE FROM Instruction" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Instruction ETL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{8DEDB061-4A4D-40CD-A769-8B9815DCD912}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Instruction ETL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Instruction ETL\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Milieu: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Milieu: Nom"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Sexe: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Sexe: Nom"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Niveau d''instruction: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Niveau d''instruction: Nom"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Niveau d''instruction: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Régions: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Régions: Nom"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Faits: Valeur]"
+                      cachedDataType="r8"
+                      cachedName="Faits: Valeur"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]"
+                      name="Copy of Milieu: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]"
+                      name="Copy of Sexe: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Niveau d''instruction: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Niveau d''instruction: Nom]"
+                      name="Copy of Niveau d''instruction: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Niveau d''instruction: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]"
+                      name="Copy of Régions: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]"
+                      name="Copy of Faits: Valeur"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Instruction ETL\Conversion de données 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Milieu: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Milieu: Nom"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Sexe: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Sexe: Nom"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Niveau d''instruction: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Niveau d''instruction: Nom"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Niveau d''instruction: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Régions: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Régions: Nom"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Faits: Valeur]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Faits: Valeur"
+                      lineageId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Milieu: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Milieu: Nom]"
+                      name="Copy of Copy of Milieu: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Sexe: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Sexe: Nom]"
+                      name="Copy of Copy of Sexe: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Niveau d''instruction: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Niveau d''instruction: Nom]"
+                      name="Copy of Copy of Niveau d''instruction: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Niveau d''instruction: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Régions: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Régions: Nom]"
+                      name="Copy of Copy of Régions: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Faits: Valeur]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Faits: Valeur]"
+                      name="Copy of Copy of Faits: Valeur"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Instruction ETL\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[Instruction]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Instruction ETL\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Faits: Valeur]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Copy of Faits: Valeur"
+                      externalMetadataColumnId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Pop]"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Faits: Valeur]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Régions: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Régions: Nom"
+                      externalMetadataColumnId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Region]"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Régions: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Niveau d''instruction: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Niveau d''instruction: Nom"
+                      externalMetadataColumnId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Niveau]"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Niveau d''instruction: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Sexe: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Sexe: Nom"
+                      externalMetadataColumnId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Sexe]"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Sexe: Nom]" />
+                    <inputColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Milieu: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Milieu: Nom"
+                      externalMetadataColumnId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Milieu]"
+                      lineageId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Milieu: Nom]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Niveau]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Niveau" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Pop]"
+                      dataType="i4"
+                      name="Pop" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Sexe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexe" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Milieu]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Milieu" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Instruction ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Instruction ETL\Source Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Source Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source Excel"
+              name="Source Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">Result$</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappage des paramètres de la commande SQL en variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Instruction ETL\Source Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel]"
+                  name="Sortie de source Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Nom]"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]"
+                      name="Milieu: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Nom]"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]"
+                      name="Sexe: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Niveau d''instruction: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Niveau d''instruction: Nom]"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Niveau d''instruction: Nom]"
+                      name="Niveau d''instruction: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: Nom]"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]"
+                      name="Régions: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Faits: Valeur]"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]"
+                      name="Faits: Valeur"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Clé]"
+                      dataType="r8"
+                      name="Indicateur: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Description]"
+                      dataType="nText"
+                      name="Indicateur: Description" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Unité]"
+                      dataType="nText"
+                      name="Indicateur: Unité" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Source]"
+                      dataType="nText"
+                      name="Indicateur: Source" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Date de mise à jour]"
+                      dataType="nText"
+                      name="Indicateur: Date de mise à jour" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Commentaire]"
+                      dataType="nText"
+                      name="Indicateur: Commentaire" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Méthodologie]"
+                      dataType="nText"
+                      name="Indicateur: Méthodologie" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Nom complet]"
+                      dataType="nText"
+                      name="Indicateur: Nom complet" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Date]"
+                      dataType="nText"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Fréquence]"
+                      dataType="nText"
+                      name="Fréquence" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Clé]"
+                      dataType="r8"
+                      name="Milieu: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Code]"
+                      dataType="nText"
+                      name="Milieu: Code" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Nom]"
+                      dataType="nText"
+                      name="Milieu: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Clé]"
+                      dataType="r8"
+                      name="Sexe: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Code]"
+                      dataType="nText"
+                      name="Sexe: Code" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Nom]"
+                      dataType="nText"
+                      name="Sexe: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Niveau d''instruction: Clé]"
+                      dataType="r8"
+                      name="Niveau d''instruction: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Niveau d''instruction: Code]"
+                      dataType="nText"
+                      name="Niveau d''instruction: Code" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Niveau d''instruction: Nom]"
+                      dataType="nText"
+                      name="Niveau d''instruction: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: Clé]"
+                      dataType="r8"
+                      name="Régions: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: ISO]"
+                      dataType="nText"
+                      name="Régions: ISO" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: Nom]"
+                      dataType="nText"
+                      name="Régions: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Faits: Valeur]"
+                      dataType="r8"
+                      name="Faits: Valeur" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Milieu: Nom]"
+                      dataType="nText"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Milieu: Nom]"
+                      name="Milieu: Nom" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Sexe: Nom]"
+                      dataType="nText"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Sexe: Nom]"
+                      name="Sexe: Nom" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Niveau d''instruction: Nom]"
+                      dataType="nText"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Niveau d''instruction: Nom]"
+                      name="Niveau d''instruction: Nom" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Régions: Nom]"
+                      dataType="nText"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Régions: Nom]"
+                      name="Régions: Nom" />
+                    <outputColumn
+                      refId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Faits: Valeur]"
+                      dataType="r8"
+                      lineageId="Package\Instruction ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Faits: Valeur]"
+                      name="Faits: Valeur" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Instruction ETL.Paths[Sortie de conversion de données]"
+              endId="Package\Instruction ETL\Conversion de données 1.Inputs[Entrée de conversion de données]"
+              name="Sortie de conversion de données"
+              startId="Package\Instruction ETL\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\Instruction ETL.Paths[Sortie de conversion de données1]"
+              endId="Package\Instruction ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de conversion de données"
+              startId="Package\Instruction ETL\Conversion de données 1.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\Instruction ETL.Paths[Sortie de source Excel]"
+              endId="Package\Instruction ETL\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de source Excel"
+              startId="Package\Instruction ETL\Source Excel.Outputs[Sortie de source Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\scoloration ETL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{3798A4D8-4B33-4703-983D-AE7BFB2274B8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="scoloration ETL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\scoloration ETL\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Milieu: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Milieu: Nom"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Sexe: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Sexe: Nom"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Tranche d''âge: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Tranche d''âge: Nom"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Tranche d''âge: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Régions: Nom]"
+                      cachedDataType="nText"
+                      cachedName="Régions: Nom"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Faits: Valeur]"
+                      cachedDataType="r8"
+                      cachedName="Faits: Valeur"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données].Columns[Indicateur: Nom complet]"
+                      cachedDataType="nText"
+                      cachedName="Indicateur: Nom complet"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Indicateur: Nom complet]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]"
+                      name="Copy of Milieu: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]"
+                      name="Copy of Sexe: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Tranche d''âge: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Tranche d''âge: Nom]"
+                      name="Copy of Tranche d''âge: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Tranche d''âge: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]"
+                      name="Copy of Régions: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]"
+                      name="Copy of Faits: Valeur"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Indicateur: Nom complet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Indicateur: Nom complet]"
+                      name="Copy of Indicateur: Nom complet"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Indicateur: Nom complet]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\scoloration ETL\Conversion de données 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Milieu: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Milieu: Nom"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Sexe: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Sexe: Nom"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Tranche d''âge: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Tranche d''âge: Nom"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Tranche d''âge: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Régions: Nom]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Régions: Nom"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Faits: Valeur]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Faits: Valeur"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données].Columns[Copy of Indicateur: Nom complet]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Indicateur: Nom complet"
+                      lineageId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Indicateur: Nom complet]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Milieu: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Milieu: Nom]"
+                      name="Copy of Copy of Milieu: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Milieu: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Sexe: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Sexe: Nom]"
+                      name="Copy of Copy of Sexe: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Sexe: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Tranche d''âge: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Tranche d''âge: Nom]"
+                      name="Copy of Copy of Tranche d''âge: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Tranche d''âge: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Régions: Nom]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Régions: Nom]"
+                      name="Copy of Copy of Régions: Nom"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Régions: Nom]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Faits: Valeur]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Faits: Valeur]"
+                      name="Copy of Copy of Faits: Valeur"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Faits: Valeur]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Indicateur: Nom complet]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Indicateur: Nom complet]"
+                      name="Copy of Copy of Indicateur: Nom complet"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Indicateur: Nom complet]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\scoloration ETL\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Scolorisation]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\scoloration ETL\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Indicateur: Nom complet]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Indicateur: Nom complet"
+                      externalMetadataColumnId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Id]"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Indicateur: Nom complet]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Milieu: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Milieu: Nom"
+                      externalMetadataColumnId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Millieu]"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Milieu: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Sexe: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Sexe: Nom"
+                      externalMetadataColumnId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Sexe]"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Sexe: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Tranche d''âge: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Tranche d''âge: Nom"
+                      externalMetadataColumnId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Tranche_age]"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Tranche d''âge: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Régions: Nom]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of Copy of Régions: Nom"
+                      externalMetadataColumnId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Region]"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Régions: Nom]" />
+                    <inputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copy of Copy of Faits: Valeur]"
+                      cachedDataType="i4"
+                      cachedName="Copy of Copy of Faits: Valeur"
+                      externalMetadataColumnId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Pop]"
+                      lineageId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données].Columns[Copy of Copy of Faits: Valeur]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Millieu]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Millieu" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Sexe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexe" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Tranche_age]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Tranche_age" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Pop]"
+                      dataType="i4"
+                      name="Pop" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\scoloration ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\scoloration ETL\Source Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Source Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source Excel"
+              name="Source Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">Result$</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappage des paramètres de la commande SQL en variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\scoloration ETL\Source Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sc_file]"
+                  connectionManagerRefId="Package.ConnectionManagers[sc_file]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel]"
+                  name="Sortie de source Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Nom]"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Milieu: Nom]"
+                      name="Milieu: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Nom]"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Sexe: Nom]"
+                      name="Sexe: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Tranche d''âge: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Tranche d''âge: Nom]"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Tranche d''âge: Nom]"
+                      name="Tranche d''âge: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: Nom]"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Régions: Nom]"
+                      name="Régions: Nom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Faits: Valeur]"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Faits: Valeur]"
+                      name="Faits: Valeur"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Indicateur: Nom complet]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Nom complet]"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].Columns[Indicateur: Nom complet]"
+                      name="Indicateur: Nom complet"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Clé]"
+                      dataType="r8"
+                      name="Indicateur: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Unité]"
+                      dataType="nText"
+                      name="Indicateur: Unité" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Source]"
+                      dataType="nText"
+                      name="Indicateur: Source" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Commentaire]"
+                      dataType="nText"
+                      name="Indicateur: Commentaire" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Description]"
+                      dataType="nText"
+                      name="Indicateur: Description" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Date de mise à jour]"
+                      dataType="nText"
+                      name="Indicateur: Date de mise à jour" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Méthodologie]"
+                      dataType="nText"
+                      name="Indicateur: Méthodologie" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Indicateur: Nom complet]"
+                      dataType="nText"
+                      name="Indicateur: Nom complet" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Date]"
+                      dataType="nText"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Fréquence]"
+                      dataType="nText"
+                      name="Fréquence" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Clé]"
+                      dataType="r8"
+                      name="Milieu: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Description]"
+                      dataType="nText"
+                      name="Milieu: Description" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Nomenclature]"
+                      dataType="nText"
+                      name="Milieu: Nomenclature" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Milieu: Nom]"
+                      dataType="nText"
+                      name="Milieu: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Clé]"
+                      dataType="r8"
+                      name="Sexe: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Description]"
+                      dataType="nText"
+                      name="Sexe: Description" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Nomenclature]"
+                      dataType="nText"
+                      name="Sexe: Nomenclature" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Sexe: Nom]"
+                      dataType="nText"
+                      name="Sexe: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Tranche d''âge: Clé]"
+                      dataType="r8"
+                      name="Tranche d''âge: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Tranche d''âge: Description]"
+                      dataType="nText"
+                      name="Tranche d''âge: Description" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Tranche d''âge: Nomenclature]"
+                      dataType="nText"
+                      name="Tranche d''âge: Nomenclature" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Tranche d''âge: Nom]"
+                      dataType="nText"
+                      name="Tranche d''âge: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: Clé]"
+                      dataType="r8"
+                      name="Régions: Clé" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: ISO]"
+                      dataType="nText"
+                      name="Régions: ISO" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Régions: Nom]"
+                      dataType="nText"
+                      name="Régions: Nom" />
+                    <externalMetadataColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Faits: Valeur]"
+                      dataType="r8"
+                      name="Faits: Valeur" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Milieu: Nom]"
+                      dataType="nText"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Milieu: Nom]"
+                      name="Milieu: Nom" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Sexe: Nom]"
+                      dataType="nText"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Sexe: Nom]"
+                      name="Sexe: Nom" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Tranche d''âge: Nom]"
+                      dataType="nText"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Tranche d''âge: Nom]"
+                      name="Tranche d''âge: Nom" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Régions: Nom]"
+                      dataType="nText"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Régions: Nom]"
+                      name="Régions: Nom" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Faits: Valeur]"
+                      dataType="r8"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Faits: Valeur]"
+                      name="Faits: Valeur" />
+                    <outputColumn
+                      refId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Indicateur: Nom complet]"
+                      dataType="nText"
+                      lineageId="Package\scoloration ETL\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Indicateur: Nom complet]"
+                      name="Indicateur: Nom complet" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\scoloration ETL.Paths[Sortie de conversion de données]"
+              endId="Package\scoloration ETL\Conversion de données 1.Inputs[Entrée de conversion de données]"
+              name="Sortie de conversion de données"
+              startId="Package\scoloration ETL\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\scoloration ETL.Paths[Sortie de conversion de données1]"
+              endId="Package\scoloration ETL\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de conversion de données"
+              startId="Package\scoloration ETL\Conversion de données 1.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\scoloration ETL.Paths[Sortie de source Excel]"
+              endId="Package\scoloration ETL\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de source Excel"
+              startId="Package\scoloration ETL\Source Excel.Outputs[Sortie de source Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{49E8D9E2-D7A5-4396-BAC2-2C157A002048}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\scoloration ETL" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{512E4350-F424-4434-B1C1-AD2AB52858A4}"
+      DTS:From="Package\Execute SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Instruction ETL" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\scoloration ETL"
+          TopLeft="141.666658926342,144.733332326876" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="119.166660155687,39.8666663894388" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="201.566660155687,81.4666663894388">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.2999987706543,63.266665937437"
+              Start="0,0"
+              End="15.2999987706543,55.766665937437">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6333329687185" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6333329687185"
+                    Point2="0,31.6333329687185"
+                    Point3="4,31.6333329687185" />
+                  <mssgle:LineSegment
+                    End="11.2999987706543,31.6333329687185" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.2999987706543,31.6333329687185"
+                    Point2="15.2999987706543,31.6333329687185"
+                    Point3="15.2999987706543,35.6333329687185" />
+                  <mssgle:LineSegment
+                    End="15.2999987706543,55.766665937437" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,41.6"
+          Id="Package\Instruction ETL"
+          TopLeft="401.666644720568,142.999999005596" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Execute SQL Task 1"
+          TopLeft="378.333312662112,38.9999997287989" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="460.733312662112,80.5999997287989">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.9333320584561,62.3999992767969"
+              Start="0,0"
+              End="14.9333320584561,54.8999992767969">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.1999996383985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.1999996383985"
+                    Point2="0,31.1999996383985"
+                    Point3="4,31.1999996383985" />
+                  <mssgle:LineSegment
+                    End="10.9333320584561,31.1999996383985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.9333320584561,31.1999996383985"
+                    Point2="14.9333320584561,31.1999996383985"
+                    Point3="14.9333320584561,35.1999996383985" />
+                  <mssgle:LineSegment
+                    End="14.9333320584561,54.8999992767969" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\scoloration ETL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\scoloration ETL\Source Excel"
+          TopLeft="409.999977598589,40.7333330500788" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\scoloration ETL\Conversion de données"
+          TopLeft="655.499964485567,101.233332778878" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\scoloration ETL\Conversion de données 1"
+          TopLeft="666.666630241607,195.399998752475" />
+        <EdgeLayout
+          Id="Package\scoloration ETL.Paths[Sortie de conversion de données]"
+          TopLeft="749.499964485567,142.833332778878">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.56666575604,52.5666659735971"
+              Start="0,0"
+              End="15.56666575604,45.0666659735971">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.2833329867986" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.2833329867986"
+                    Point2="0,26.2833329867986"
+                    Point3="4,26.2833329867986" />
+                  <mssgle:LineSegment
+                    End="11.56666575604,26.2833329867986" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.56666575604,26.2833329867986"
+                    Point2="15.56666575604,26.2833329867986"
+                    Point3="15.56666575604,30.2833329867986" />
+                  <mssgle:LineSegment
+                    End="15.56666575604,45.0666659735971" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\scoloration ETL.Paths[Sortie de source Excel]"
+          TopLeft="549.999977598589,61.5333330500788">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="105.499986886979,60.4999997287988"
+              Start="0,0"
+              End="97.9999868869787,60.4999997287988">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="48.7499934434894,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.7499934434894,0"
+                    Point2="52.7499934434894,0"
+                    Point3="52.7499934434894,4" />
+                  <mssgle:LineSegment
+                    End="52.7499934434894,56.4999997287988" />
+                  <mssgle:CubicBezierSegment
+                    Point1="52.7499934434894,56.4999997287988"
+                    Point2="52.7499934434894,60.4999997287988"
+                    Point3="56.7499934434894,60.4999997287988" />
+                  <mssgle:LineSegment
+                    End="97.9999868869787,60.4999997287988" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\scoloration ETL\Destination OLE DB"
+          TopLeft="327.49998210619,287.733331332472" />
+        <EdgeLayout
+          Id="Package\scoloration ETL.Paths[Sortie de conversion de données1]"
+          TopLeft="765.066630241607,236.999998752475">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-351.966648135418,50.733332579997"
+              Start="0,0"
+              End="-351.966648135418,43.233332579997">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3666662899985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3666662899985"
+                    Point2="0,25.3666662899985"
+                    Point3="-4,25.3666662899985" />
+                  <mssgle:LineSegment
+                    End="-347.966648135418,25.3666662899985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-347.966648135418,25.3666662899985"
+                    Point2="-351.966648135418,25.3666662899985"
+                    Point3="-351.966648135418,29.3666662899985" />
+                  <mssgle:LineSegment
+                    End="-351.966648135418,43.233332579997" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\scoloration ETL\Source Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\scoloration ETL\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Instruction ETL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\Instruction ETL\Source Excel"
+          TopLeft="380.999994322658,52.9999992102385" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Instruction ETL\Destination OLE DB"
+          TopLeft="538.999991968274,359.999994635582" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Instruction ETL\Conversion de données"
+          TopLeft="438.99999345839,135.999997973442" />
+        <EdgeLayout
+          Id="Package\Instruction ETL.Paths[Sortie de source Excel]"
+          TopLeft="450.999994322658,94.5999992102385">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="81.9999991357327,41.3999987632036"
+              Start="0,0"
+              End="81.9999991357327,33.8999987632036">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6999993816018" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6999993816018"
+                    Point2="0,20.6999993816018"
+                    Point3="4,20.6999993816018" />
+                  <mssgle:LineSegment
+                    End="77.9999991357327,20.6999993816018" />
+                  <mssgle:CubicBezierSegment
+                    Point1="77.9999991357327,20.6999993816018"
+                    Point2="81.9999991357327,20.6999993816018"
+                    Point3="81.9999991357327,24.6999993816018" />
+                  <mssgle:LineSegment
+                    End="81.9999991357327,33.8999987632036" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Instruction ETL\Conversion de données 1"
+          TopLeft="534.999992027879,240.99999640882" />
+        <EdgeLayout
+          Id="Package\Instruction ETL.Paths[Sortie de conversion de données]"
+          TopLeft="532.99999345839,177.599997973442">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100.399998569489,63.3999984353781"
+              Start="0,0"
+              End="100.399998569489,55.8999984353781">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6999992176891" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6999992176891"
+                    Point2="0,31.6999992176891"
+                    Point3="4,31.6999992176891" />
+                  <mssgle:LineSegment
+                    End="96.3999985694885,31.6999992176891" />
+                  <mssgle:CubicBezierSegment
+                    Point1="96.3999985694885,31.6999992176891"
+                    Point2="100.399998569489,31.6999992176891"
+                    Point3="100.399998569489,35.6999992176891" />
+                  <mssgle:LineSegment
+                    End="100.399998569489,55.8999984353781" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Instruction ETL.Paths[Sortie de conversion de données1]"
+          TopLeft="633.399992027879,282.59999640882">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.8000000596046,77.3999982267617"
+              Start="0,0"
+              End="-8.8000000596046,69.8999982267617">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.6999991133808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.6999991133808"
+                    Point2="0,38.6999991133808"
+                    Point3="-4,38.6999991133808" />
+                  <mssgle:LineSegment
+                    End="-4.8000000596046,38.6999991133808" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.8000000596046,38.6999991133808"
+                    Point2="-8.8000000596046,38.6999991133808"
+                    Point3="-8.8000000596046,42.6999991133808" />
+                  <mssgle:LineSegment
+                    End="-8.8000000596046,69.8999982267617" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Instruction ETL\Source Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Instruction ETL\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
