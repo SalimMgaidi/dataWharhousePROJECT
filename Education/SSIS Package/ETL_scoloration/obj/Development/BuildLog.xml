@@ -2,18 +2,23 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>ETL_scoloration</Name>
-    <LastWriteTime>2025-11-26T15:04:06.165299Z</LastWriteTime>
+    <LastWriteTime>2025-11-30T20:46:19.9882756Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>education_stg.dtsx</Name>
-      <LastWriteTime>2025-11-26T13:46:48.8046795Z</LastWriteTime>
+      <LastWriteTime>2025-11-26T22:11:16.2887499Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>education_dw.dtsx</Name>
-      <LastWriteTime>2025-11-29T15:12:45.1892666Z</LastWriteTime>
+      <LastWriteTime>2025-11-30T21:25:25.5373651Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Package1.dtsx</Name>
+      <LastWriteTime>2025-11-30T20:46:19.9667021Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

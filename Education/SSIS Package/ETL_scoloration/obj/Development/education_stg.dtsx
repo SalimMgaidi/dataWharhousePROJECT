@@ -11,11 +11,35 @@
   DTS:LocaleID="1036"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{41BFBE12-9AB6-462F-A209-E22626E4F3FC}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{75C39A15-DC00-4BD4-AFBB-04E06FC0D607}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2C26D8C1-BD34-4DDB-A9FB-5E80E6748B71}"
+      DTS:ObjectName="DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-L7GNL6I\SQLEXPRESS;Initial Catalog=STG_stat_Tn;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{2C26D8C1-BD34-4DDB-A9FB-5E80E6748B71}DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5A10EC39-15C1-428A-9482-488A5530BAFA}"
+      DTS:ObjectName="DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-L7GNL6I\SQLEXPRESS;Initial Catalog=STG_stat_Tn;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{5A10EC39-15C1-428A-9482-488A5530BAFA}DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
       DTS:CreationName="OLEDB"
@@ -50,6 +74,42 @@
           DTS:ConnectRetryCount="0"
           DTS:ConnectRetryInterval="0"
           DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Lenovo\Desktop\edu\regions.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{2A2030E1-1BEA-4D3E-AAEB-1D079DBCB0A6}"
+      DTS:ObjectName="Excel Connection Manager 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\SKYMIL\Desktop\edu\Scolarisation de la population agés de 6 à 14 ans 11_26_2025 09_39_39.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{DE783FE6-5804-4E87-9D64-690B1DA295EC}"
+      DTS:ObjectName="Excel Connection Manager 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\SKYMIL\Desktop\edu\Répartition de la population agée de 10 ans et plus selon le niveau d'instruction 11_26_2025 09_41_58.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 4]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{E005EDA4-0631-4CB8-B5E9-8128C44DD986}"
+      DTS:ObjectName="Excel Connection Manager 4">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\SKYMIL\Desktop\edu\regions.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -511,7 +571,7 @@
                 <property
                   dataType="System.String"
                   description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
-                  name="OpenRowset">[Instruction]</property>
+                  name="OpenRowset">[dbo].[Instruction]</property>
                 <property
                   dataType="System.String"
                   description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
@@ -554,8 +614,8 @@
               <connections>
                 <connection
                   refId="Package\Instruction ETL\Destination OLE DB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn 1]"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
@@ -707,8 +767,8 @@
               <connections>
                 <connection
                   refId="Package\Instruction ETL\Source Excel.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
-                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 3]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 3]"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
@@ -1091,7 +1151,7 @@
                 <property
                   dataType="System.String"
                   description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
-                  name="OpenRowset">[Regions]</property>
+                  name="OpenRowset">[dbo].[Regions]</property>
                 <property
                   dataType="System.String"
                   description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
@@ -1134,8 +1194,8 @@
               <connections>
                 <connection
                   refId="Package\regions ETL\Destination OLE DB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn 1]"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
@@ -1263,8 +1323,8 @@
               <connections>
                 <connection
                   refId="Package\regions ETL\Source Excel.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
-                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 4]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 4]"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
@@ -1872,8 +1932,8 @@
               <connections>
                 <connection
                   refId="Package\scoloration ETL\Destination OLE DB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-U34VBKC\SQLEXPRESS.STG_stat_Tn]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-L7GNL6I\SQLEXPRESS.STG_stat_Tn]"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
@@ -2039,8 +2099,8 @@
               <connections>
                 <connection
                   refId="Package\scoloration ETL\Source Excel.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[sc_file]"
-                  connectionManagerRefId="Package.ConnectionManagers[sc_file]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 2]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 2]"
                   description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                   name="OleDbConnection" />
               </connections>
@@ -2325,19 +2385,27 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="164.8,41.6"
+          Size="165,42"
           Id="Package\Execute SQL Task"
           TopLeft="119.166660155687,39.8666663894388" />
         <NodeLayout
-          Size="164.8,41.6"
+          Size="165,42"
           Id="Package\Execute SQL Task 1"
           TopLeft="378.333312662112,38.9999997287989" />
         <NodeLayout
-          Size="148,41.6"
+          Size="165,42"
+          Id="Package\Execute SQL Task 1 1"
+          TopLeft="650.833297773369,49.3999996564786" />
+        <NodeLayout
+          Size="148,42"
           Id="Package\Instruction ETL"
           TopLeft="401.666644720568,142.999999005596" />
         <NodeLayout
-          Size="150.4,41.6"
+          Size="134,42"
+          Id="Package\regions ETL"
+          TopLeft="663.333297090399,141.266665684316" />
+        <NodeLayout
+          Size="150,42"
           Id="Package\scoloration ETL"
           TopLeft="141.666658926342,144.733332326876" />
         <EdgeLayout
@@ -2408,14 +2476,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="134.4,41.6"
-          Id="Package\regions ETL"
-          TopLeft="663.333297090399,141.266665684316" />
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Execute SQL Task 1 1"
-          TopLeft="650.833297773369,49.3999996564786" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="731.883297431884,90.9999996564786">
@@ -2447,17 +2507,21 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="140,41.6"
-          Id="Package\Instruction ETL\Source Excel"
-          TopLeft="380.999994322658,52.9999992102385" />
-        <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Instruction ETL\Destination OLE DB"
           TopLeft="538.999991968274,359.999994635582" />
         <NodeLayout
-          Size="188,41.6"
+          Size="140,42"
+          Id="Package\Instruction ETL\Source Excel"
+          TopLeft="380.999994322658,52.9999992102385" />
+        <NodeLayout
+          Size="188,42"
           Id="Package\Instruction ETL\Conversion de données"
           TopLeft="438.99999345839,135.999997973442" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Instruction ETL\Conversion de données 1"
+          TopLeft="534.999992027879,240.99999640882" />
         <EdgeLayout
           Id="Package\Instruction ETL.Paths[Sortie de source Excel]"
           TopLeft="450.999994322658,94.5999992102385">
@@ -2484,44 +2548,6 @@
                     Point3="81.9999991357327,24.6999993816018" />
                   <mssgle:LineSegment
                     End="81.9999991357327,33.8999987632036" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="196.8,41.6"
-          Id="Package\Instruction ETL\Conversion de données 1"
-          TopLeft="534.999992027879,240.99999640882" />
-        <EdgeLayout
-          Id="Package\Instruction ETL.Paths[Sortie de conversion de données]"
-          TopLeft="532.99999345839,177.599997973442">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="100.399998569489,63.3999984353781"
-              Start="0,0"
-              End="100.399998569489,55.8999984353781">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.6999992176891" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27.6999992176891"
-                    Point2="0,31.6999992176891"
-                    Point3="4,31.6999992176891" />
-                  <mssgle:LineSegment
-                    End="96.3999985694885,31.6999992176891" />
-                  <mssgle:CubicBezierSegment
-                    Point1="96.3999985694885,31.6999992176891"
-                    Point2="100.399998569489,31.6999992176891"
-                    Point3="100.399998569489,35.6999992176891" />
-                  <mssgle:LineSegment
-                    End="100.399998569489,55.8999984353781" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2564,6 +2590,40 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Instruction ETL.Paths[Sortie de conversion de données]"
+          TopLeft="532.99999345839,177.599997973442">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100.399998569489,63.3999984353781"
+              Start="0,0"
+              End="100.399998569489,55.8999984353781">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6999992176891" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6999992176891"
+                    Point2="0,31.6999992176891"
+                    Point3="4,31.6999992176891" />
+                  <mssgle:LineSegment
+                    End="96.3999985694885,31.6999992176891" />
+                  <mssgle:CubicBezierSegment
+                    Point1="96.3999985694885,31.6999992176891"
+                    Point2="100.399998569489,31.6999992176891"
+                    Point3="100.399998569489,35.6999992176891" />
+                  <mssgle:LineSegment
+                    End="100.399998569489,55.8999984353781" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2594,174 +2654,22 @@
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\scoloration ETL">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="140,41.6"
-          Id="Package\scoloration ETL\Source Excel"
-          TopLeft="409.999977598589,40.7333330500788" />
-        <NodeLayout
-          Size="188,41.6"
-          Id="Package\scoloration ETL\Conversion de données"
-          TopLeft="655.499964485567,101.233332778878" />
-        <NodeLayout
-          Size="196.8,41.6"
-          Id="Package\scoloration ETL\Conversion de données 1"
-          TopLeft="666.666630241607,195.399998752475" />
-        <EdgeLayout
-          Id="Package\scoloration ETL.Paths[Sortie de conversion de données]"
-          TopLeft="749.499964485567,142.833332778878">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="15.56666575604,52.5666659735971"
-              Start="0,0"
-              End="15.56666575604,45.0666659735971">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.2833329867986" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.2833329867986"
-                    Point2="0,26.2833329867986"
-                    Point3="4,26.2833329867986" />
-                  <mssgle:LineSegment
-                    End="11.56666575604,26.2833329867986" />
-                  <mssgle:CubicBezierSegment
-                    Point1="11.56666575604,26.2833329867986"
-                    Point2="15.56666575604,26.2833329867986"
-                    Point3="15.56666575604,30.2833329867986" />
-                  <mssgle:LineSegment
-                    End="15.56666575604,45.0666659735971" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\scoloration ETL.Paths[Sortie de source Excel]"
-          TopLeft="549.999977598589,61.5333330500788">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="105.499986886979,60.4999997287988"
-              Start="0,0"
-              End="97.9999868869787,60.4999997287988">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="48.7499934434894,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="48.7499934434894,0"
-                    Point2="52.7499934434894,0"
-                    Point3="52.7499934434894,4" />
-                  <mssgle:LineSegment
-                    End="52.7499934434894,56.4999997287988" />
-                  <mssgle:CubicBezierSegment
-                    Point1="52.7499934434894,56.4999997287988"
-                    Point2="52.7499934434894,60.4999997287988"
-                    Point3="56.7499934434894,60.4999997287988" />
-                  <mssgle:LineSegment
-                    End="97.9999868869787,60.4999997287988" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\scoloration ETL\Destination OLE DB"
-          TopLeft="327.49998210619,287.733331332472" />
-        <EdgeLayout
-          Id="Package\scoloration ETL.Paths[Sortie de conversion de données1]"
-          TopLeft="765.066630241607,236.999998752475">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-351.966648135418,50.733332579997"
-              Start="0,0"
-              End="-351.966648135418,43.233332579997">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.3666662899985" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.3666662899985"
-                    Point2="0,25.3666662899985"
-                    Point3="-4,25.3666662899985" />
-                  <mssgle:LineSegment
-                    End="-347.966648135418,25.3666662899985" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-347.966648135418,25.3666662899985"
-                    Point2="-351.966648135418,25.3666662899985"
-                    Point3="-351.966648135418,29.3666662899985" />
-                  <mssgle:LineSegment
-                    End="-351.966648135418,43.233332579997" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\scoloration ETL\Destination OLE DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\scoloration ETL\Source Excel">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
     design-time-name="Package\regions ETL">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="140,41.6"
-          Id="Package\regions ETL\Source Excel"
-          TopLeft="391.666645266945,38.9999997287989" />
-        <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\regions ETL\Destination OLE DB"
           TopLeft="386.666645540132,259.999998191992" />
         <NodeLayout
-          Size="188,41.6"
+          Size="188,42"
           Id="Package\regions ETL\Conversion de données"
           TopLeft="373.3333129353,135.199999059836" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\regions ETL\Source Excel"
+          TopLeft="391.666645266945,38.9999997287989" />
         <EdgeLayout
           Id="Package\regions ETL.Paths[Sortie de source Excel]"
           TopLeft="464.499979101122,80.5999997287989">
@@ -2810,7 +2718,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\regions ETL\Source Excel">
+    design-time-name="Package\regions ETL\Destination OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2823,7 +2731,159 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\regions ETL\Destination OLE DB">
+    design-time-name="Package\regions ETL\Source Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\scoloration ETL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\scoloration ETL\Destination OLE DB"
+          TopLeft="327.49998210619,287.733331332472" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\scoloration ETL\Conversion de données 1"
+          TopLeft="666.666630241607,195.399998752475" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\scoloration ETL\Conversion de données"
+          TopLeft="655.499964485567,101.233332778878" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\scoloration ETL\Source Excel"
+          TopLeft="409.999977598589,40.7333330500788" />
+        <EdgeLayout
+          Id="Package\scoloration ETL.Paths[Sortie de source Excel]"
+          TopLeft="549.999977598589,61.5333330500788">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="105.499986886979,60.4999997287988"
+              Start="0,0"
+              End="97.9999868869787,60.4999997287988">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="48.7499934434894,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.7499934434894,0"
+                    Point2="52.7499934434894,0"
+                    Point3="52.7499934434894,4" />
+                  <mssgle:LineSegment
+                    End="52.7499934434894,56.4999997287988" />
+                  <mssgle:CubicBezierSegment
+                    Point1="52.7499934434894,56.4999997287988"
+                    Point2="52.7499934434894,60.4999997287988"
+                    Point3="56.7499934434894,60.4999997287988" />
+                  <mssgle:LineSegment
+                    End="97.9999868869787,60.4999997287988" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\scoloration ETL.Paths[Sortie de conversion de données1]"
+          TopLeft="765.066630241607,236.999998752475">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-351.966648135418,50.733332579997"
+              Start="0,0"
+              End="-351.966648135418,43.233332579997">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3666662899985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3666662899985"
+                    Point2="0,25.3666662899985"
+                    Point3="-4,25.3666662899985" />
+                  <mssgle:LineSegment
+                    End="-347.966648135418,25.3666662899985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-347.966648135418,25.3666662899985"
+                    Point2="-351.966648135418,25.3666662899985"
+                    Point3="-351.966648135418,29.3666662899985" />
+                  <mssgle:LineSegment
+                    End="-351.966648135418,43.233332579997" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\scoloration ETL.Paths[Sortie de conversion de données]"
+          TopLeft="749.499964485567,142.833332778878">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.56666575604,52.5666659735971"
+              Start="0,0"
+              End="15.56666575604,45.0666659735971">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.2833329867986" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.2833329867986"
+                    Point2="0,26.2833329867986"
+                    Point3="4,26.2833329867986" />
+                  <mssgle:LineSegment
+                    End="11.56666575604,26.2833329867986" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.56666575604,26.2833329867986"
+                    Point2="15.56666575604,26.2833329867986"
+                    Point3="15.56666575604,30.2833329867986" />
+                  <mssgle:LineSegment
+                    End="15.56666575604,45.0666659735971" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\scoloration ETL\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\scoloration ETL\Source Excel">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
